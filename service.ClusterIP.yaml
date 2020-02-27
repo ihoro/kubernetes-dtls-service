@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dtls-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: dtls
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 3
+  ports:
+    - protocol: UDP
+      port: 11111
+      targetPort: 11111

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dtls
+  labels:
+    app: dtls
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dtls
+  template:
+    metadata:
+      labels:
+        app: dtls
+        version: "1.0.0"
+    spec:
+      containers:
+        - name: dtls
+          image: igoro/dtls:latest
+          command: [ "./server-dtls" ]
+          ports:
+          - containerPort: 11111
+            protocol: UDP
+
